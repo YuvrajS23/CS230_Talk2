@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Architecture 101 Blog</title>
+<meta name="keywords" content="free css templates, blog design, 2-column, web design, CSS, HTML" />
+<meta name="description" content="Design Blog - free css template, 2-column blog layout" />
+<link href="css/templatemo_style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript">
+function clearText(field)
+{
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+}
+</script>
+</head>
+<body>
+
+<div id="templatemo_body_wrapper">
+<div id="templatemo_wrapper">
+    
+    <div id="templatemo_header">
+            
+        <div id="site_title">
+            <a href="#" target="_parent">Architecture 101
+            	<span>Blog</span>
+                <span class="tagline">Created by Yuvraj Singh</span>
+            </a>
+        </div> <!-- end of site_title -->
+        
+    
+   
+        <div class="cleaner"></div>
+        
+    </div> <!-- end of header -->
+    
+    <div id="templatemo_menu">
+        <ul>
+            <li><a href="#" class="current"><span></span>Home</a></li>
+        </ul>    	
+        
+    </div> <!-- end of templatemo_menu -->
+    
+    <div id="templatemo_main">
+    	
+        <div id="templatemo_content">
+        
+        	<div class="post_box">
+            
+                <h2><a href="#">GPU Computing & Beyond</a></h2>		
+                </br>
+                <div class="image_wrapper"><a href="#" target="_parent"><img src="images/GPU.jpg" alt="image 1" height="300px" width="612px" /></a></div>
+              <p align="justify">
+                Namaskar Readers! Welcome Back to Architecture 101 Blog. Today, I am here to talk about GPUs & their necessity in the modern computing world and some ideas to cope with the challenges that are out there in optimizing our processing power. This blog takes inspiration from a talk given by <b>Professor Adwait Jog</b> Of the <b>University of Virginia</b> as a part of the course CS230. So, Without making you all more bored let's dive into the topic but first, let me take you through a brief introduction over GPUs.
+            </p>
+            <br>
+             
+            <h5>Introduction To GPU</h5>
+                <p align="justify">
+                    A <b>Graphics Processing Unit</b>, popularly known as <b>GPU</b>, is a specialized processor designed to accelerate the rendering of images, videos, and animations. Originally developed for gaming, GPUs have become increasingly important in a variety of fields, including machine learning, scientific computing, and cryptocurrency mining. GPUs are highly parallelized and can perform thousands of operations simultaneously, making them much faster than traditional central processing units (CPUs) for tasks that require heavy computations. In short, GPUs are designed to provide <i>better throughput</i> & <i>efficiency</i> than CPUs. With the rise of artificial intelligence and big data, GPUs have become an essential tool for professionals and researchers who need to process vast amounts of data quickly and efficiently. And thus, the demand has touched a 3-year high in 2021 and is supposed to surpass CPUs in the following decade. Nowadays, Apple & other companies are incorporating more GPU cores constituting significant portions in their latest processors. But GPUs face several <b>challenges</b> in the real world that restrict us from using them indefinitely to optimize the processors' throughput.
+                </p>
+
+            <br>
+            
+            <h5>Challenges to GPUs</h5>
+                <p align="justify">
+                As powerful as GPUs are, they face several challenges when it comes to their practical use in the real world. One of the most significant challenges is <b>Scalability</b>. GPUs require massive amounts of memory bandwidth, and as the number of processing cores on a GPU increases, the memory requirements grow exponentially. This growth has created a <b>compute memory gap</b>, where the amount of memory required by the GPU to perform computations far outstrips the amount of memory that can be provided within the same die size. This gap can be clearly observed to be increasing with time in both NVIDIA and AMD processors.
+                </p>
+                <div class="image_wrapper"><img src="images/cmg.png" alt="image 1" height="200px"/></div>
+                <p align="justify">
+                Additionally, the <b>size of the GPU die</b> itself is becoming increasingly problematic, as it is difficult to manufacture large dies without defects, and larger dies are also more expensive to produce. The limit in die size can be seen in the below graph</p>
+                
+                <div class="image_wrapper"><img src="images/die.png" alt="image 1" height="200px"/></div>
+                <p align="justify">
+                Alongside scalability issues, <b>Security & Reliability</b> also pose a significant challenge to GPUs. As GPUs become more widely used in critical applications like autonomous vehicles, healthcare, and finance, there is an increased risk of attacks and failures, which could have severe consequences. Therefore, it is highly important to develop & implement robust security and reliability measures to mitigate these risks. Before we talk about these security and reliability challenges in detail, we must first have a background on the GPU's underline architecture to understand it better.
+                </p>
+            <br>
+            <h5>Background on GPU Architecture</h5>
+                <p align="justify">
+                    The architecture of a <b>Graphics Processing Unit (GPU)</b> is designed to accelerate the parallel execution of tasks that require massive amounts of computation, such as graphics rendering and scientific computing. The execution model of a GPU is based on a parallel processing approach that utilizes thousands of small processing cores to perform computations simultaneously. The processing cores are grouped into <b>Streaming Multiprocessors (SMs)</b>, which are responsible for executing instructions in parallel. Each SM has its own set of resources, including shared memory, registers, and scheduling units. The <b>warp scheduler</b> assigns groups of 32 threads, called warps, to each SM, and the threads in a warp execute in lockstep to optimize performance. The GPU architecture also uses <b>Memory Access Coalescing</b>, which combines memory accesses from multiple threads into a single transaction, reducing memory latency and increasing memory throughput. Together, these features enable GPUs to achieve high levels of parallelism and performance, making them a powerful tool for a wide range of applications.
+                </p>
+                <p align="justify">Ah! too many new terms to digest. You know you can always lookup through external links given in the right panel for a better understanding :)</p>
+                <p align="justify">Now, let's discuss the security and reliability issues in detail as mentioned earlier.</p>
+            <br>
+            
+            <h5>Security Challenges in GPU</h5>
+                <p align="justify">
+                    Security challenges in GPUs are becoming increasingly important as they are being used in sensitive applications. <b>Timing attacks</b> are a form of side-channel attacks that exploit variations in execution time to reveal sensitive information like encryption keys. GPUs are particularly vulnerable to timing attacks due to their parallel architecture, which makes it challenging to synchronize the execution of threads. An attacker can use timing attacks to infer sensitive information like the AES key by measuring the execution time of the last round of the AES encryption algorithm on the GPU. By carefully selecting inputs, an attacker can measure the time taken by the GPU to access coalesced memory addresses and correlate it with the real encryption key used in the computation. Correlation turns out to be the highest for the real encryption key as shown by the red dot in the figure.
+                </p>
+                <div class="image_wrapper"><img src="images/cor1.png" alt="image 1" height="200px"/></div>
+                
+                    <h6>What is the solution to such threats over GPUs?</h6>
+                    <p align="justify">
+                     One solution that immediately pops up in someone's mind is the <b>Naive solution</b> that says that we must disable coalescing altogether and hence the correlation drops to approximately zero making our system robust to such attacks. But this solution degrades the performance of the GPU up to 178 percent which is certainly undesirable.
+                </p>
+                <p align="justify">
+                    There are some other <b>state-of-art solutions</b> to the problems mentioned below:
+                    <ul>
+                        <li style="margin-left: 15px;"><b>Random Coalescing:</b> introduces random delays in memory access on the GPU. This technique helps to reduce the precision of the timing measurements, making it more difficult for an attacker to infer sensitive information. However, Randomized Coalescing can introduce performance overhead and it may not be effective when the GPU is vulnerable to cache-based timing attacks or when caches and <b>MSHRs(Miss Status Holding Registers)</b> are shared between different processing units.</li>
+                        <li style="margin-left: 15px;"><b>Software Solution:</b> A software solution against timing attacks on GPUs is to use <b>constant-time implementations</b> of cryptographic algorithms. This approach ensures that the execution time of the algorithm is independent of the input and the secret key, making it difficult for an attacker to infer sensitive information. However, this approach addresses leakage only in AES applications and may not apply to other cryptographic algorithms.</li>
+                    </ul>
+                </p>
+                <p align="justify">
+                    Both of them have either performance on generality limitations. We, therefore, require <b>performance-efficient general solutions</b> to protect our system. Here comes a solution based on key insight over <b>redundant data management (BCoal)</b> to the rescue. 
+                </p>
+                <h6>Bucketing-based Memory Coalescing (BCoal):-</h6>
+                <p align="justify">
+                    <b>BCoal</b> is a bucketing-based memory coalescing technique that aims to improve the performance and security of GPUs by reducing the precision of timing measurements used in side-channel attacks. BCoal uses buckets to group memory accesses that occur within a certain time interval, thus reducing the variance in timing measurements. The number of buckets used in BCoal can be adjusted to balance security and performance, as a larger number of buckets can reduce the precision of timing measurements but can also increase the overhead of memory coalescing thus creating a <b>security-performance tradeoff</b>. BCoal also employs redundant data management to reduce the amount of data that needs to be processed, further improving the efficiency of the memory coalescing process. By improving the security and performance of GPUs, BCoal has the potential to enhance the usability of GPUs in a wide range of applications. BCoal is both security and performance efficient.
+                </p>
+            <br>
+            
+            <h5>Reliability Challenges in GPU</h5>
+                <p align="justify">
+                    GPU reliability challenges are becoming increasingly important as GPUs are being used in safety-critical and mission-critical applications. <b>Sources of errors</b> in GPUs can include manufacturing defects, thermal and power issues, and soft errors caused by cosmic radiation and electromagnetic interference. These errors can have several impacts including <b>Silent Data Corruption (SDC)</b> which leads to incorrect output. It can also result in severe <b>accidents</b> and hangs that can turn out to be very drastic in critical applications. The protection mechanisms employed to counter these errors include <b>Error Checking and Correction (ECC)</b> which can correct single-bit errors and detect double-bit errors and protects register file, caches, and memory. Other Techniques for protection include- <b>Duplication/Triplication</b> which means selective re-computation and <b>Checkpointing</b>. The problem with these current protection mechanisms is that protection against multi-bit errors is prohibitively expensive in GPUs and new techniques e.g. low-voltage GPU caches lead to high error rates. Thus, the current protection is not enough and is expensive. So what to do to make the protection mechanism more effective and efficient? A key insight: <b>Redundant Data Management</b> comes to the playground. It focuses on protecting only a <i>fraction of memory</i>. Now the question arises, <b> Which fraction to protect? & How to protect it? </b>
+                </p>
+                <p align="justify">
+                    Let's answer the <b>first question</b>. The fraction of memory that should be protected must be <b>Highly Accessed & Highly Shared.</b> Let us term it <b>Hot Memory</b>. On Application Pattern Analysis as shown in the below figures, we find that a small fraction (Hot Memory) of memory is highly accessed and highly shared and the output is highly sensitive to faults in Hot Memory.
+                    </p>
+                    <div class="image_wrapper"><img src="images/acc.png" alt="image 1" height="200px"/></div>
+                    <div class="image_wrapper"><img src="images/share.png" alt="image 1" height="200px"/></div>
+                    <p align="justify">
+                    <b>How to identify which fraction corresponds to Hot Memory? Source Code Profiling</b>. Source code profiling is the process of analyzing a program's source code to identify performance bottlenecks and areas of inefficient memory usage, including hot memory.
+                </p>
+                <p align="justify">
+                    Now let's answer the <b>second question</b>. Hot Memory can be protected by implementing a simple but effective replication mechanism that is Hot memory is replicated for detection/correction purposes. Also, GPU's latency tolerance feature helps in keeping the overheads low. This gives improved reliability at low-performance overhead.
+                </p>
+
+            <br>
+            <h5>Conclusion</h5>
+                <p align="justify">
+                    GPUs have become an integral part of modern computing, and their demand is set to increase in the following decade due to their efficiency and high throughput. However, GPUs face several challenges, including scalability, security, and reliability. To optimize the performance of GPUs, we need to develop and implement robust security and reliability measures while maintaining performance. Random coalescing and constant-time implementations of cryptographic algorithms are some of the current solutions to timing attacks on GPUs. In the future, we will need to continue to innovate and develop new technologies to overcome these challenges and push the boundaries of computing further. Ultimately, GPUs are a powerful tool that can help us to tackle some of the world's most significant challenges, from climate change to disease research, and we need to ensure that we use them effectively and responsibly.
+                </p>
+                <br>
+                <p align="justify">
+                    Here we come to an end! Thanks for bearing with me till the end! Hope you did not get bored!
+                    <br>
+                    See you next time! :) Tata! Bye! Bye!</p>
+                    <hr>
+           
+            
+            <div class="cleaner"></div>
+            </div>
+            
+        
+        </div>
+        
+        <div id="templatemo_sidebar">
+        
+        	<div id="aboutus">
+            	<h3>About UVa</h3>
+                <div class="image_fl"><img src="images/uva.png" alt="about UVa" height="55px" width="55px" /></div>
+                <p>The University of Virginia (UVA) is a public research university in Charlottesville, Virginia. It was founded in 1819 by Thomas Jefferson. Set within the Academical Village, a UNESCO World Heritage Site, the university is referred to as a "Public Ivy" for offering <a href="https://incoresemi.com/" class="continue">more...</a></p>
+          </div>
+            
+            <div class="cleaner_h20"></div>
+            
+            <div class="sidebar_box">
+            
+            	
+                
+            </div>
+            
+            <div class="sidebar_box">
+            	<h3>External Links</h3>
+                
+                <ul class="sidebar_menu">
+                    <li><a href="https://www.quora.com/What-is-a-CPU-die">&raquo; CPU-die</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Thread_block_(CUDA_programming)">&raquo; Streaming Multiprocessors / Warps </a></li> 
+                    <li><a href="https://en.wikipedia.org/wiki/Coalescing_(computer_science)">&raquo; Coalescing </a></li>
+                  	<li><a href="https://en.wikipedia.org/wiki/Timing_attack">&raquo; Timing Attack </a></li>
+                    <li><a href="https://adwaitjog.github.io/docs/pdf/bcoal-hpca20.pdf">&raquo; BCoal</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Data_corruption">&raquo; Silent Data Corruption</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Error_correction_code">&raquo; Error Correction Code (ECC)</a></li>
+       		    </ul>
+                
+          </div>
+            
+            
+            <div class="sidebar_box">
+            	
+                
+                <div class="cleaner"></div>
+            </div>
+  
+            
+          	<div class="sidebar_box">
+            
+            	<h3>Newsletters</h3>
+                
+                <ul class="sidebar_menu">
+                    <li><a href="https://www.nextplatform.com/2023/03/06/intel-pushes-out-hybrid-cpu-gpu-compute-beyond-2025/">&raquo; Intel Pushes Out Hybrid CPU-GPU Compute Beyond 2025
+                    </a></li>
+                    <li><a href="https://www.digitaltrends.com/computing/nvidia-gtc-2022-everything-announced/">&raquo; Nvidia GTC 2022: RTX 4090, DLSS 3, and everything else announced</a></li> 
+                    <li><a href="https://www.techradar.com/news/nvidia-teases-geforce-beyond-could-the-rtx-4000-gpu-reveal-be-on-september-20">&raquo; Nvidia's next GeForce Beyond event could see an RTX 4000 GPU reveal on September 20
+
+                    </a></li>
+                  	<li><a href="https://www.tomshardware.com/news/live/nvidia-geforce-rtx-4090-reveal-live-blog">&raquo; Nvidia RTX 4090 Reveal: Watch the GeForce Beyond Live Blog Here</a></li>
+       		    </ul>
+                
+                
+            	<div class="cleaner_h20"></div>
+              
+            </div>
+
+            <div class="sidebar_box">
+            
+            	<h3>Archives</h3>
+                
+                <ul class="sidebar_menu">
+                    <li><a href="https://yuvrajs23.github.io/CS230-Blog/">&raquo; Optimizing Computing with Configurability</a></li>
+       		    </ul>
+                
+                
+            	<div class="cleaner_h20"></div>
+              
+            </div>
+        
+        </div>
+    
+    	<div class="cleaner"></div>
+    </div>
+    
+</div>
+<div class="cleaner"></div>
+</div>
+
+
+<div id="templatemo_footer_wrapper">
+	<div id="templatemo_footer">
+    
+    	<div class="footer_box col_w160">
+        	<h4>Author</h4>
+            <ul class="footer_menu">
+            	<li><a href="https://www.cse.iitb.ac.in/~singhyuva">Yuvraj Singh</a></li>
+            </ul>     
+        </div>
+        
+        <div class="footer_box col_w300">
+        	<h4>References</h4>
+            <ul class="footer_menu">
+            	<li><a href="#">Talk by Prof. Adwait Jog</a></li>
+                <li><a href="https://www.wikipedia.org/">Wikipedia</a></li>
+                <li><a href="https://adwaitjog.github.io/docs/pdf/bcoal-hpca20.pdf">BCoal_PDF</a></li>
+            </ul>     
+        </div>
+        
+        <div class="footer_box col_w160">
+        	
+        </div>
+
+        <div class="footer_box col_w260 fb_last">
+        	
+        </div>
+    
+    	<div class="cleaner"></div>
+    </div>
+</div>
+
+<div id="templatemo_copyright">
+    Copyright © 08.04.2023 <a href="https://www.cse.iitb.ac.in/~singhyuva">Yuvraj Singh</a>  
+    
+</div>
+
+</html>
